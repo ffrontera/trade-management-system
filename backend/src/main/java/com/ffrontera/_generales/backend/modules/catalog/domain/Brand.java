@@ -1,15 +1,14 @@
 package com.ffrontera._generales.backend.modules.catalog.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "brands")
-@Data
+@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Brand {
 
     @Id
@@ -20,4 +19,6 @@ public class Brand {
     private String name;
 
     private String logoUrl;
+
+    private boolean active = true;
 }
