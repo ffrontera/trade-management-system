@@ -1,0 +1,26 @@
+# --- Java / Spring Boot ---
+backend/target/
+backend/mvnw
+backend/mvnw.cmd
+backend/.mvn
+backend/help.md
+backend/.idea/
+backend/*.iml
+backend/.settings/
+backend/.classpath
+backend/.project
+*.class
+*.log
+*.jar
+
+# --- Node / React ---
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.DS_Store
+frontend/coverage/
+
+# --- IDEs / General ---
+.vscode/
+.idea/
+*.swp
