@@ -2,13 +2,15 @@ package com.ffrontera._generales.backend.modules.catalog.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
 @Table(name = "categories")
-@Data
+@Getter @Setter
 @NoArgsConstructor
 public class Category {
 
@@ -19,11 +21,13 @@ public class Category {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Category parentCategory;
 
     @OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL)
     private List<Category> subCategories;
+
+    private Boolean active = true;
 
 }

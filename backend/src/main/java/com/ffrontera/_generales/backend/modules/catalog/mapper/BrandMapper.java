@@ -1,4 +1,4 @@
-package com.ffrontera._generales.backend.modules.catalog.service.mapper;
+package com.ffrontera._generales.backend.modules.catalog.mapper;
 
 import com.ffrontera._generales.backend.modules.catalog.domain.Brand;
 import com.ffrontera._generales.backend.modules.catalog.dto.BrandDTO;

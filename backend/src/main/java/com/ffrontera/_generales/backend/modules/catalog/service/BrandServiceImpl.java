@@ -1,11 +1,10 @@
 package com.ffrontera._generales.backend.modules.catalog.service;
 
 import com.ffrontera._generales.backend.common.exception.DuplicateResourceException;
-import com.ffrontera._generales.backend.common.exception.ResourceNotFoundExeption;
-import com.ffrontera._generales.backend.modules.catalog.domain.Brand;
+import com.ffrontera._generales.backend.common.exception.ResourceNotFoundException;
 import com.ffrontera._generales.backend.modules.catalog.dto.BrandDTO;
 import com.ffrontera._generales.backend.modules.catalog.repository.BrandRepository;
-import com.ffrontera._generales.backend.modules.catalog.service.mapper.BrandMapper;
+import com.ffrontera._generales.backend.modules.catalog.mapper.BrandMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -67,7 +66,7 @@ public class BrandServiceImpl implements BrandService{
             return brandMapper.toDTO(brandRepository.save(brand));
         }
         else {
-            throw new ResourceNotFoundExeption("La marca con id '" + id + "' no existe.");
+            throw new ResourceNotFoundException("La marca con id '" + id + "' no existe.");
         }
     }
 
@@ -77,7 +76,7 @@ public class BrandServiceImpl implements BrandService{
         var searchBrand = brandRepository.findById(id);
 
         if (!searchBrand.isPresent())
-            throw new ResourceNotFoundExeption("La marca con id '" + id + "' no existe.");
+            throw new ResourceNotFoundException("La marca con id '" + id + "' no existe.");
 
         var brand = searchBrand.get();
         brand.setActive(false);
