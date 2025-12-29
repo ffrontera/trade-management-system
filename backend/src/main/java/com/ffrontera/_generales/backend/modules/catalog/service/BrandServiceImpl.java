@@ -25,7 +25,7 @@ public class BrandServiceImpl implements BrandService{
     public BrandDTO createBrand(BrandDTO brandDTO) {
 
         if (brandRepository.existsByName(brandDTO.name()))
-            throw new IllegalArgumentException("La marca con el nombre '" + brandDTO.name() + "' ya existe.");
+            throw new DuplicateResourceException("La marca con el nombre '" + brandDTO.name() + "' ya existe.");
 
         var brand = brandMapper.toEntity(brandDTO);
         brand.setActive(true);
