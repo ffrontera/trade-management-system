@@ -13,6 +13,6 @@ spring:
     database-platform: org.hibernate.dialect.MySQLDialect
 
 cloudinary:
-  claoud-name: ${CLOUD-NAME}
-  api-key: ${CLOUD-KEY}
-  api-secret: ${CLOUD-SECRET}
+  cloudName: ${CLOUD-NAME}
+  apiKey: ${CLOUD-KEY}
+  apiSecret: ${CLOUD-SECRET}

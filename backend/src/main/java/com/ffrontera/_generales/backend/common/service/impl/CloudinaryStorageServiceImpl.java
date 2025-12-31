@@ -37,8 +37,11 @@ public class CloudinaryStorageServiceImpl implements StorageService {
         Map uploadResult = cloudinary.uploader().upload(file.getBytes(),
                 ObjectUtils.asMap(
                         "public_id", publicId,
-                        "folder", "ecommerce_products"
+                        "folder", "ecommerce_products",
+                        "resource_type", "auto"
                 ));
-        return uploadResult.get("secure_url").toString();
+        String secureUrl = uploadResult.get("secure_url").toString();
+        log.info("Image successfully uploaded: {}", secureUrl);
+        return secureUrl;
     }
 }
