@@ -5,6 +5,7 @@ import com.ffrontera._generales.backend.modules.catalog.domain.Brand;
 import com.ffrontera._generales.backend.modules.catalog.dto.BrandDTO;
 import com.ffrontera._generales.backend.modules.catalog.mapper.BrandMapper;
 import com.ffrontera._generales.backend.modules.catalog.repository.BrandRepository;
+import com.ffrontera._generales.backend.modules.catalog.service.impl.BrandServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

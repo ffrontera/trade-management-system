@@ -1,10 +1,11 @@
-package com.ffrontera._generales.backend.modules.catalog.service;
+package com.ffrontera._generales.backend.modules.catalog.service.impl;
 
 import com.ffrontera._generales.backend.common.exception.DuplicateResourceException;
 import com.ffrontera._generales.backend.common.exception.ResourceNotFoundException;
 import com.ffrontera._generales.backend.modules.catalog.dto.BrandDTO;
 import com.ffrontera._generales.backend.modules.catalog.repository.BrandRepository;
 import com.ffrontera._generales.backend.modules.catalog.mapper.BrandMapper;
+import com.ffrontera._generales.backend.modules.catalog.service.BrandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class BrandServiceImpl implements BrandService{
+public class BrandServiceImpl implements BrandService {
 
     private final BrandRepository brandRepository;
     private final BrandMapper brandMapper;

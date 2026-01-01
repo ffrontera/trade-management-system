@@ -1,4 +1,4 @@
-package com.ffrontera._generales.backend.modules.catalog.service;
+package com.ffrontera._generales.backend.modules.catalog.service.impl;
 
 import com.ffrontera._generales.backend.common.exception.DuplicateResourceException;
 import com.ffrontera._generales.backend.common.exception.ResourceNotFoundException;
@@ -9,6 +9,7 @@ import com.ffrontera._generales.backend.modules.catalog.mapper.ProductMapper;
 import com.ffrontera._generales.backend.modules.catalog.repository.BrandRepository;
 import com.ffrontera._generales.backend.modules.catalog.repository.CategoryRepository;
 import com.ffrontera._generales.backend.modules.catalog.repository.ProductRepository;
+import com.ffrontera._generales.backend.modules.catalog.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final BrandRepository brandRepository;

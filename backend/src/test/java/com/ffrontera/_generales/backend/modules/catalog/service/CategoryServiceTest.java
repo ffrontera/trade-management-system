@@ -5,6 +5,7 @@ import com.ffrontera._generales.backend.modules.catalog.domain.Category;
 import com.ffrontera._generales.backend.modules.catalog.dto.CategoryDTO;
 import com.ffrontera._generales.backend.modules.catalog.mapper.CategoryMapper;
 import com.ffrontera._generales.backend.modules.catalog.repository.CategoryRepository;
+import com.ffrontera._generales.backend.modules.catalog.service.impl.CategoryServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

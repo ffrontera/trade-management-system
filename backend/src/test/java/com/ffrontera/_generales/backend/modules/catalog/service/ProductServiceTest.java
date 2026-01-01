@@ -12,6 +12,7 @@ import com.ffrontera._generales.backend.modules.catalog.mapper.ProductMapper;
 import com.ffrontera._generales.backend.modules.catalog.repository.BrandRepository;
 import com.ffrontera._generales.backend.modules.catalog.repository.CategoryRepository;
 import com.ffrontera._generales.backend.modules.catalog.repository.ProductRepository;
+import com.ffrontera._generales.backend.modules.catalog.service.impl.ProductServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
