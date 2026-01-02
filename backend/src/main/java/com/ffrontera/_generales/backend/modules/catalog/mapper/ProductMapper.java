@@ -17,7 +17,7 @@ public class ProductMapper {
         if (product == null)
             return null;
 
-        List<ProductImageDTO> imagesDTO = product.getImages() != null
+        List<ProductImageDTO> imagesDTO = product.getImages() == null
                 ? Collections.emptyList()
                 : product.getImages().stream()
                     .map(image -> new ProductImageDTO(

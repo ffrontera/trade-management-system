@@ -18,6 +18,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -45,7 +47,7 @@ public class ProductServiceImpl implements ProductService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Producto con ID " + productId + " no encontrado."));
 
-        if (!product.getSkuInternal().equals(productDTO.skuInternal()) && productRepository.existsBySkuInternal(productDTO.skuInternal())) {
+        if (!Objects.equals(product.getSkuInternal(), productDTO.skuInternal()) && productRepository.existsBySkuInternal(productDTO.skuInternal())) {
             throw new DuplicateResourceException("Producto con SKU interno '" + productDTO.skuInternal() + "' ya existe.");
         }
 

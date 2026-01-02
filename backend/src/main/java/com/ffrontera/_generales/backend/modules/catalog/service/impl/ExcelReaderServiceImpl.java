@@ -2,6 +2,7 @@ package com.ffrontera._generales.backend.modules.catalog.service.impl;
 
 import com.ffrontera._generales.backend.modules.catalog.dto.PriceListRowDTO;
 import com.ffrontera._generales.backend.modules.catalog.service.ExcelReaderService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
+@Slf4j
 public class ExcelReaderServiceImpl implements ExcelReaderService {
     @Override
     public List<PriceListRowDTO> parsePriceList(MultipartFile file) throws IOException {
@@ -30,8 +32,8 @@ public class ExcelReaderServiceImpl implements ExcelReaderService {
             while (rowIterator.hasNext()) {
                 Row row = rowIterator.next();
 
-                // Skip header row
-                if (rowIndex++ == 0) {
+                if (rowIndex == 0) {
+                    rowIndex++;
                     continue;
                 }
 
@@ -48,8 +50,7 @@ public class ExcelReaderServiceImpl implements ExcelReaderService {
                        ));
                    }
                 } catch (Exception e) {
-                    // Log the error and skip the malformed row
-                    System.err.println("Error parsing row " + rowIndex + ": " + e.getMessage());
+                    log.warn("Error parsing row {}: {}", rowIndex, e.getMessage());
                 }
                 rowIndex++;
             }

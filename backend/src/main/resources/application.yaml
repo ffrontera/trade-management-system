@@ -16,3 +16,7 @@ cloudinary:
   cloudName: ${CLOUD-NAME}
   apiKey: ${CLOUD-KEY}
   apiSecret: ${CLOUD-SECRET}
+
+app:
+  price-list:
+    validity-days: 45

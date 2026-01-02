@@ -12,6 +12,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 @Service
 @RequiredArgsConstructor
 public class SupplierServiceImpl implements SupplierService {
@@ -49,10 +51,10 @@ public class SupplierServiceImpl implements SupplierService {
         var supplier = supplierRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Proveedor con ID '" + id + "' no encontrado."));
 
-        if (!supplier.getCode().equals(supplierDTO.code()) && supplierRepository.existsByCode(supplierDTO.code()))
+        if (!Objects.equals(supplier.getCode(), supplierDTO.code()) && supplierRepository.existsByCode(supplierDTO.code()))
             throw new DuplicateResourceException("Proveedor con código '" + supplierDTO.code() + "' ya existe.");
 
-        if (!supplier.getEmail().equals(supplierDTO.email()) && supplierRepository.existsByEmail(supplierDTO.email()))
+        if (!Objects.equals(supplier.getEmail(), supplierDTO.email()) && supplierRepository.existsByEmail(supplierDTO.email()))
             throw new DuplicateResourceException("Proveedor con email '" + supplierDTO.email() + "' ya existe.");
 
         supplier.setName(supplierDTO.name());
