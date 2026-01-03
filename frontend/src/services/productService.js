@@ -12,7 +12,18 @@ const api = axios.create({
 export const productService = {
     getAll: async () => {
         const response = await api.get('/products');
-        return response.data;
+        return Array.isArray(response.data.content)
+            ? response.data.content.map(product => ({
+                ...product,
+                salePrice: product.salePrice ?? 0,
+                brandName: product.brandName ?? 'Sin Marca',
+                categoryName: product.categoryName ?? 'Sin Categoría',
+                images: product.images?.map((img) => ({
+                    url: img.url || img.imageUrl, // Compatibilidad con diferentes formatos de URL
+                    orderIndex: img.orderIndex,
+                })) || [],
+            }))
+            : [];
     },
 
     create: async (productData) => {
@@ -20,6 +31,18 @@ export const productService = {
         return response.data;
     },
 
+    update: async (productData) => {
+        // Asumimos que el ID viene en el objeto o lo pasamos como param
+        const response = await api.put(`/products/${productData.id}`, productData);
+        return response.data;
+    },
+
+    toggleStatus: async (id) => {
+        // Backend debe tener: PUT /api/products/{id}/status
+        const response = await api.put(`/products/${id}/status`);
+        return response.data;
+    },
+    
     uploadImage: async (file) => {
         const formData = new FormData();
         formData.append('file', file);
@@ -33,10 +56,10 @@ export const productService = {
 export const catalogService = {
     getBrands: async () => {
         const response = await api.get('/brands');
-        return response.data;
+        return response.data.content;
     },
     getCategories: async () => {
         const response = await api.get('/categories');
-        return response.data;
+        return response.data.content;
     }
 };
