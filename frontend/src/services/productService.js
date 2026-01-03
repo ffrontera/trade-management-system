@@ -32,8 +32,16 @@ export const productService = {
     },
 
     update: async (productData) => {
-        // Asumimos que el ID viene en el objeto o lo pasamos como param
-        const response = await api.put(`/products/${productData.id}`, productData);
+        // Convertir la llave 'url' a 'imageUrl' antes de enviar al backend
+        const updatedProductData = {
+            ...productData,
+            images: productData.images.map((img) => ({
+                imageUrl: img.url, // Cambiar 'url' a 'imageUrl'
+                orderIndex: img.orderIndex,
+            })),
+        };
+
+        const response = await api.put(`/products/${updatedProductData.id}`, updatedProductData);
         return response.data;
     },
 

@@ -165,6 +165,17 @@ export const ProductForm = ({ onProductCreated, selectedProduct, onClearSelectio
     const handleRemoveImage = (url) => {
         setFormData((prev) => {
             const updatedImages = prev.images.filter((img) => img.url !== url);
+
+            // Cerrar el modal si la imagen eliminada está seleccionada
+            if (selectedImageIndex !== null && prev.images[selectedImageIndex]?.url === url) {
+                closeModal();
+            }
+
+            // Ajustar el índice seleccionado si es necesario
+            if (selectedImageIndex !== null && updatedImages.length > 0) {
+                setSelectedImageIndex((prevIndex) => Math.min(prevIndex, updatedImages.length - 1));
+            }
+
             return { ...prev, images: updatedImages };
         });
     };

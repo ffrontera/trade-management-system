@@ -7,7 +7,7 @@ export const ProductList = ({ products, loading, onProductSelect, onStatusChange
 
     const handleToggleStatus = async (id, currentStatus, event) => {
         event.stopPropagation(); // IMPORTANTE: Evita que se abra el formulario de edición
-        
+
         // Confirmación simple (opcional)
         const action = currentStatus ? "desactivar" : "activar";
         if (!window.confirm(`¿Deseas ${action} este producto?`)) return;
@@ -22,9 +22,9 @@ export const ProductList = ({ products, loading, onProductSelect, onStatusChange
     };
 
     const columns = [
-        { 
-            field: 'image', 
-            headerName: 'Img', 
+        {
+            field: 'image',
+            headerName: 'Img',
             width: 70,
             renderCell: (params) => {
                 const imgUrl = params.row?.images?.find((img) => img.orderIndex === 1)?.url || null;
@@ -36,10 +36,13 @@ export const ProductList = ({ products, loading, onProductSelect, onStatusChange
         { field: 'brandName', headerName: 'Marca', width: 130 },
         { field: 'categoryName', headerName: 'Categoría', width: 130 },
         {
-            field: 'salePrice', 
-            headerName: 'Precio Venta', 
+            field: 'salePrice',
+            headerName: 'Precio Venta',
             width: 120,
-            valueFormatter: (params) => `$ ${params.value?.toLocaleString('en-US', { minimumFractionDigits: 2 })}`
+            valueFormatter: (params) => {
+                return `$ ${params.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+            }
         },
         { field: 'stock', headerName: 'Stock', width: 90 },
         {
@@ -47,10 +50,10 @@ export const ProductList = ({ products, loading, onProductSelect, onStatusChange
             headerName: 'Estado',
             width: 100,
             renderCell: (params) => (
-                <Chip 
-                    label={params.value ? "Activo" : "Inactivo"} 
-                    color={params.value ? "success" : "default"} 
-                    size="small" 
+                <Chip
+                    label={params.value ? "Activo" : "Inactivo"}
+                    color={params.value ? "success" : "default"}
+                    size="small"
                     onClick={(e) => handleToggleStatus(params.row.id, params.value, e)}
                     sx={{ cursor: 'pointer', '&:hover': { opacity: 0.8 } }}
                 />
@@ -76,7 +79,7 @@ export const ProductList = ({ products, loading, onProductSelect, onStatusChange
                 rowsPerPageOptions={[10, 20]}
                 disableSelectionOnClick
                 getRowId={(row) => row.id}
-                onRowClick={(params) => onProductSelect && onProductSelect(params.row)} 
+                onRowClick={(params) => onProductSelect && onProductSelect(params.row)}
             />
         </Box>
     );

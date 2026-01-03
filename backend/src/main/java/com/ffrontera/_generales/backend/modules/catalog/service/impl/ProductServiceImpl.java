@@ -110,4 +110,16 @@ public class ProductServiceImpl implements ProductService {
             product.setCategory(category);
         }
     }
+
+    @Override
+    @Transactional
+    public void toggleProductStatus(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado con ID: " + id));
+
+        boolean newStatus = !product.getActive();
+        product.setActive(newStatus);
+
+        productRepository.save(product);
+    }
 }

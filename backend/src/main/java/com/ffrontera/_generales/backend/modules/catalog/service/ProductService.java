@@ -10,4 +10,5 @@ public interface ProductService {
     Page<ProductDTO> getAll(int page, int size, String sortBy, String sortDir,
                             String name, Long brandId, Long categoryId, Boolean active);
     void deleteProduct(Long productId);
+    void toggleProductStatus(Long id);
 }

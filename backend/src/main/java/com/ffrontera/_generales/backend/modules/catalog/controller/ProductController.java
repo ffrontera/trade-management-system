@@ -47,4 +47,10 @@ public class ProductController {
         productService.deleteProduct(productId);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}/status")
+    public ResponseEntity<Void> toggleStatus(@PathVariable Long id) {
+        productService.toggleProductStatus(id);
+        return ResponseEntity.noContent().build();
+    }
 }
